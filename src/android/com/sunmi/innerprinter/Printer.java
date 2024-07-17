@@ -1,5 +1,7 @@
 package com.sunmi.innerprinter;
 
+import static android.content.Context.RECEIVER_EXPORTED;
+
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
@@ -22,6 +24,7 @@ import android.content.BroadcastReceiver;
 
 import android.graphics.Bitmap;
 
+import android.os.Build;
 import android.os.IBinder;
 
 import android.util.Base64;
@@ -154,7 +157,11 @@ public class Printer extends CordovaPlugin {
       mFilter.addAction(OVER_HEATING_ACITON);
       mFilter.addAction(FIRMWARE_UPDATING_ACITON);
 
-      applicationContext.registerReceiver(printerStatusReceiver, mFilter);
+      if (Build.VERSION.SDK_INT > Build.VERSION_CODES.TIRAMISU) {
+        applicationContext.registerReceiver(printerStatusReceiver, mFilter, RECEIVER_EXPORTED);
+      }else {
+        applicationContext.registerReceiver(printerStatusReceiver, mFilter);
+      }
     }
 
     private Date startTime;
@@ -246,7 +253,12 @@ public class Printer extends CordovaPlugin {
       applicationContext.bindService(intent, conn, Context.BIND_AUTO_CREATE);
       IntentFilter scanFilter = new IntentFilter();
       scanFilter.addAction("com.sunmi.scanner.ACTION_DATA_CODE_RECEIVED");
-      applicationContext.registerReceiver(scanReceiver, scanFilter);
+      if (Build.VERSION.SDK_INT > Build.VERSION_CODES.TIRAMISU) {
+        applicationContext.registerReceiver(scanReceiver, scanFilter, RECEIVER_EXPORTED);
+      }else {
+        applicationContext.registerReceiver(scanReceiver, scanFilter);
+      }
+
       scanReceiver.setCordova(this.cordova, this.webView);
       callbackContext.success("scanner init success");
     }
