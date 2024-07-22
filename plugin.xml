@@ -60,5 +60,9 @@
     <source-file src="src/android/com/sunmi/trans/TransBean.java" target-dir="src/com/sunmi/trans/" />
     <source-file src="src/android/com/sunmi/trans/TransBean.aidl" target-dir="src/com/sunmi/trans/" />
     <source-file src="src/android/com/sunmi/scanner/IScanInterface.aidl" target-dir="src/com/sunmi/scanner/" />
+
+    <config-file target="app/build-extras.gradle" parent="/*">
+      <source src="src/android/build-extras.gradle" />
+    </config-file>
   </platform>
 </plugin>

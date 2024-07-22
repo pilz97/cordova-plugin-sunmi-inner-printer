@@ -1,0 +1,7 @@
+android {
+    sourceSets {
+        main {
+            aidl.srcDirs = ['src']
+        }
+    }
+}
