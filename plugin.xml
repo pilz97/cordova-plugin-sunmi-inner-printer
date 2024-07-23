@@ -12,11 +12,11 @@
     <preference name="ANDROID_SUPPORT_V13_VERSION" default="27.+" />
     <framework src="com.sunmi:printerlibrary:1.0.22" />
     <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="jiuiv5">
+      <feature name="ICallback">
         <param name="android-package" value="woyou.aidlservice.jiuiv5" />
         <param name="onload" value="true" />
       </feature>
-      <feature name="scanner">
+      <feature name="IScanInterface">
         <param name="android-package" value="com.sunmi.scanner" />
         <param name="onload" value="true" />
       </feature>
@@ -63,8 +63,8 @@
     <source-file src="src/android/com/sunmi/innerprinter/ScanReceiver.java" target-dir="src/com/sunmi/innerprinter/" />
     <source-file src="src/android/com/sunmi/utils/BitmapUtils.java" target-dir="src/com/sunmi/utils/" />
     <source-file src="src/android/com/sunmi/utils/ThreadPoolManager.java" target-dir="src/com/sunmi/utils/" />
-    <source-file src="src/android/aidl/woyou/aidlservice/jiuiv5/IWoyouService.aidl" target-dir="src/woyou/aidlservice/jiuiv5/" />
-    <source-file src="src/android/aidl/woyou/aidlservice/jiuiv5/ICallback.aidl" target-dir="src/woyou/aidlservice/jiuiv5/" />
+    <source-file src="src/android/aidl/woyou/aidlservice/jiuiv5/IWoyouService.aidl" target-dir="src/aidl/woyou/aidlservice/jiuiv5/" />
+    <source-file src="src/android/aidl/woyou/aidlservice/jiuiv5/ICallback.aidl" target-dir="src/aidl/woyou/aidlservice/jiuiv5/" />
     <source-file src="src/android/com/sunmi/trans/TransBean.java" target-dir="src/com/sunmi/trans/" />
     <source-file src="src/android/aidl/com/sunmi/trans/TransBean.aidl" target-dir="src/com/sunmi/trans/" />
     <source-file src="src/android/aidl/com/sunmi/scanner/IScanInterface.aidl" target-dir="src/com/sunmi/scanner" />
