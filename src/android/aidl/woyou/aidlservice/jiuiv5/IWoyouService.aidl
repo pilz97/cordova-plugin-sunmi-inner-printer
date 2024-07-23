@@ -3,9 +3,9 @@
 * AIDL Version: 2.1
 */
 
-package woyou.aidlservice.jiuiv5;
+package aidl.woyou.aidlservice.jiuiv5;
 
-import woyou.aidlservice.jiuiv5.ICallback;
+import aidl.woyou.aidlservice.jiuiv5.ICallback;
 import android.graphics.Bitmap;
 import com.sunmi.trans.TransBean;
 
