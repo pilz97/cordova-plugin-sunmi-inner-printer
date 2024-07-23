@@ -1,10 +1,7 @@
 android {
     sourceSets {
         main {
-            aidl.srcDirs = [
-                'woyou/aidlservice/jiuiv5',
-                'com/sunmi/scanner'
-            ]
+            aidl.srcDirs = ['src/main/aidl', 'src/android']
         }
     }
 }
