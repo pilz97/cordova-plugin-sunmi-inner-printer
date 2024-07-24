@@ -11,10 +11,6 @@ import org.json.JSONException;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaWebView;
 
-import woyou.aidlservice.jiuiv5.ICallback;
-import woyou.aidlservice.jiuiv5.IWoyouService;
-import com.sunmi.scanner.IScanInterface;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -100,18 +96,15 @@ public class Printer extends CordovaPlugin {
     };
 
 
-    private IScanInterface scanInterface;
     private ServiceConnection conn = new ServiceConnection() {
       @Override
       public void onServiceConnected(ComponentName name, IBinder service) {
-        scanInterface = IScanInterface.Stub.asInterface(service);
         Log.i("setting", "Scanner Service Connected!");
       }
 
       @Override
       public void onServiceDisconnected(ComponentName name) {
         Log.e("setting", "Scanner Service Disconnected!");
-        scanInterface = null;
       }
     };
 

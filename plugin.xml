@@ -12,14 +12,6 @@
     <preference name="ANDROID_SUPPORT_V13_VERSION" default="27.+" />
     <framework src="com.sunmi:printerlibrary:1.0.22" />
     <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="ICallback">
-        <param name="android-package" value="woyou.aidlservice.jiuiv5" />
-        <param name="onload" value="true" />
-      </feature>
-      <feature name="IScanInterface">
-        <param name="android-package" value="com.sunmi.scanner" />
-        <param name="onload" value="true" />
-      </feature>
       <feature name="Printer">
         <param name="android-package" value="com.sunmi.innerprinter.Printer" />
         <param name="onload" value="true" />
@@ -29,7 +21,7 @@
         <package android:name="woyou.aidlservice.jiuiv5" />
     </config-file>
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
-      <receiver android:name="com.sunmi.innerprinter.PrinterStatusReceiver" android:enabled="true" android:exported="false">
+      <receiver android:name="com.sunmi.innerprinter.PrinterStatusReceiver" android:enabled="true" android:exported="true">
         <intent-filter android:priority="1000">
           <action android:name="woyou.aidlservice.jiuv5.OUT_OF_PAPER_ACTION" />
           <action android:name="woyou.aidlservice.jiuv5.ERROR_ACTION" />
@@ -42,31 +34,27 @@
           <action android:name="woyou.aidlservice.jiuv5.FIRMWARE_UPDATING_ACITON" />
         </intent-filter>
       </receiver>
-      <receiver android:name="com.sunmi.innerprinter.ScanReceiver" android:enabled="true" android:exported="false">
+      <receiver android:name="com.sunmi.innerprinter.ScanReceiver" android:enabled="true" android:exported="true">
         <intent-filter android:priority="1000">
           <action android:name="com.sunmi.scanner.ACTION_DATA_CODE_RECEIVED" />
         </intent-filter>
       </receiver>
-      <service android:name="woyou.aidlservice.jiuiv5.IWoyouService" android:exported="false">
+      <service android:name="woyou.aidlservice.jiuiv5.IWoyouService" android:exported="true">
         <intent-filter>
           <action android:name="woyou.aidlservice.jiuiv5.IWoyouService" />
         </intent-filter>
       </service>
-      <service android:name="com.sunmi.scanner.IScanInterface" android:exported="false">
+      <service android:name="com.sunmi.scanner.IScanInterface" android:exported="true">
         <intent-filter>
           <action android:name="com.sunmi.scanner.IScanInterface" />
         </intent-filter>
       </service>
     </config-file>
+
     <source-file src="src/android/com/sunmi/innerprinter/Printer.java" target-dir="src/com/sunmi/innerprinter/" />
     <source-file src="src/android/com/sunmi/innerprinter/PrinterStatusReceiver.java" target-dir="src/com/sunmi/innerprinter/" />
     <source-file src="src/android/com/sunmi/innerprinter/ScanReceiver.java" target-dir="src/com/sunmi/innerprinter/" />
     <source-file src="src/android/com/sunmi/utils/BitmapUtils.java" target-dir="src/com/sunmi/utils/" />
     <source-file src="src/android/com/sunmi/utils/ThreadPoolManager.java" target-dir="src/com/sunmi/utils/" />
-    <source-file src="src/android/aidl/woyou/aidlservice/jiuiv5/IWoyouService.aidl" target-dir="src/woyou/aidlservice/jiuiv5/" />
-    <source-file src="src/android/aidl/woyou/aidlservice/jiuiv5/ICallback.aidl" target-dir="src/woyou/aidlservice/jiuiv5/" />
-    <source-file src="src/android/com/sunmi/trans/TransBean.java" target-dir="src/com/sunmi/trans/" />
-    <source-file src="src/android/aidl/com/sunmi/trans/TransBean.aidl" target-dir="src/com/sunmi/trans/" />
-    <source-file src="src/android/aidl/com/sunmi/scanner/IScanInterface.aidl" target-dir="src/com/sunmi/scanner" />
   </platform>
 </plugin>
