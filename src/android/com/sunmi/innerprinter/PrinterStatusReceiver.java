@@ -23,23 +23,24 @@ public class PrinterStatusReceiver extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent data) {
-    if (this.isReceiving && this.callbackReceive != null) {
-      String action = data.getAction();
-      String type = "PrinterStatus";
+    try {
+      if (this.isReceiving && this.callbackReceive != null) {
+        String action = data.getAction();
+        String type = "PrinterStatus";
 
-      JSONObject jsonObj = new JSONObject();
-      try {
-        jsonObj.put("type", type);
-        jsonObj.put("action", action);
+        JSONObject jsonObj = new JSONObject();
 
-        Log.i(TAG, "RECEIVED STATUS " + action);
+          jsonObj.put("type", type);
+          jsonObj.put("action", action);
 
-        PluginResult result = new PluginResult(PluginResult.Status.OK, jsonObj);
-        result.setKeepCallback(true);
-        callbackReceive.sendPluginResult(result);
-      } catch (Exception e) {
-        Log.i(TAG, "ERROR: " + e.getMessage());
+          Log.i(TAG, "RECEIVED STATUS " + action);
+
+          PluginResult result = new PluginResult(PluginResult.Status.OK, jsonObj);
+          result.setKeepCallback(true);
+          callbackReceive.sendPluginResult(result);
       }
+    } catch (Exception e) {
+      Log.i(TAG, "ERROR: " + e.getMessage());
     }
   }
 

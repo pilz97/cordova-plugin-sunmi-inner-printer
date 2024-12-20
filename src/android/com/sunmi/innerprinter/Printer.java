@@ -123,11 +123,11 @@ public class Printer extends CordovaPlugin {
       super.initialize(cordova, webView);
       Log.i(TAG, "init sunmi plugin");
 
-      Context applicationContext = this.cordova.getActivity().getApplicationContext();
-
-      bitMapUtils = new BitmapUtils(applicationContext);
-
       try {
+        Context applicationContext = this.cordova.getActivity().getApplicationContext();
+
+        bitMapUtils = new BitmapUtils(applicationContext);
+
         boolean ret =  InnerPrinterManager.getInstance().bindService(applicationContext,
           innerPrinterCallback);
         if(!ret){
@@ -161,76 +161,81 @@ public class Printer extends CordovaPlugin {
     private String currentAction;
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
-      startTime = Calendar.getInstance().getTime();
-      currentAction = action;
-      this.callbackContext = callbackContext;
-      if (action.equals("printerInit")) {
-        printerInit(callbackContext);
-        return true;
-      } else if (action.equals("printerSelfChecking")) {
-        printerSelfChecking(callbackContext);
-        return true;
-      } else if (action.equals("getPrinterSerialNo")) {
-        getPrinterSerialNo(callbackContext);
-        return true;
-      } else if (action.equals("getPrinterVersion")) {
-        getPrinterVersion(callbackContext);
-        return true;
-      } else if (action.equals("hasPrinter")) {
-        hasPrinter(callbackContext);
-        return true;
-      } else if (action.equals("getPrintedLength")) {
-        getPrintedLength(callbackContext);
-        return true;
-      } else if (action.equals("lineWrap")) {
-        lineWrap(data.getInt(0), callbackContext);
-        return true;
-      } else if (action.equals("sendRAWData")) {
-        sendRAWData(data.getString(0), callbackContext);
-        return true;
-      } else if (action.equals("setAlignment")) {
-        setAlignment(data.getInt(0), callbackContext);
-        return true;
-      } else if (action.equals("setFontName")) {
-        setFontName(data.getString(0), callbackContext);
-        return true;
-      } else if (action.equals("setFontSize")) {
-        setFontSize((float) data.getDouble(0), callbackContext);
-        return true;
-      } else if (action.equals("printTextWithFont")) {
-        printTextWithFont(data.getString(0), data.getString(1), (float) data.getDouble(2), callbackContext);
-        return true;
-      } else if (action.equals("printColumnsText")) {
-        printColumnsText(data.getJSONArray(0), data.getJSONArray(1), data.getJSONArray(2), callbackContext);
-        return true;
-      } else if (action.equals("printBitmap")) {
-        printBitmap(data.getString(0), data.getInt(1), data.getInt(2), callbackContext);
-        return true;
-      } else if (action.equals("printBarCode")) {
-        printBarCode(data.getString(0), data.getInt(1), data.getInt(2), data.getInt(1), data.getInt(2), callbackContext);
-        return true;
-      } else if (action.equals("printQRCode")) {
-        printQRCode(data.getString(0), data.getInt(1), data.getInt(2), callbackContext);
-        return true;
-      } else if (action.equals("printOriginalText")) {
-        printOriginalText(data.getString(0), callbackContext);
-        return true;
-      } else if (action.equals("printString")) {
-        printString(data.getString(0), callbackContext);
-        return true;
-      } else if (action.equals("printerStatusStartListener")) {
-        printerStatusStartListener(callbackContext);
-        return true;
-      } else if (action.equals("printerStatusStopListener")) {
-        printerStatusStopListener();
-        return true;
-      } else if (action.equals("initScanner")) {
-        scannerInit(callbackContext);
-        return true;
-      } else if (action.equals("cutPaper")) {
-        cutPaper(callbackContext);
-        return true;
+      try {
+        startTime = Calendar.getInstance().getTime();
+        currentAction = action;
+        this.callbackContext = callbackContext;
+        if (action.equals("printerInit")) {
+          printerInit(callbackContext);
+          return true;
+        } else if (action.equals("printerSelfChecking")) {
+          printerSelfChecking(callbackContext);
+          return true;
+        } else if (action.equals("getPrinterSerialNo")) {
+          getPrinterSerialNo(callbackContext);
+          return true;
+        } else if (action.equals("getPrinterVersion")) {
+          getPrinterVersion(callbackContext);
+          return true;
+        } else if (action.equals("hasPrinter")) {
+          hasPrinter(callbackContext);
+          return true;
+        } else if (action.equals("getPrintedLength")) {
+          getPrintedLength(callbackContext);
+          return true;
+        } else if (action.equals("lineWrap")) {
+          lineWrap(data.getInt(0), callbackContext);
+          return true;
+        } else if (action.equals("sendRAWData")) {
+          sendRAWData(data.getString(0), callbackContext);
+          return true;
+        } else if (action.equals("setAlignment")) {
+          setAlignment(data.getInt(0), callbackContext);
+          return true;
+        } else if (action.equals("setFontName")) {
+          setFontName(data.getString(0), callbackContext);
+          return true;
+        } else if (action.equals("setFontSize")) {
+          setFontSize((float) data.getDouble(0), callbackContext);
+          return true;
+        } else if (action.equals("printTextWithFont")) {
+          printTextWithFont(data.getString(0), data.getString(1), (float) data.getDouble(2), callbackContext);
+          return true;
+        } else if (action.equals("printColumnsText")) {
+          printColumnsText(data.getJSONArray(0), data.getJSONArray(1), data.getJSONArray(2), callbackContext);
+          return true;
+        } else if (action.equals("printBitmap")) {
+          printBitmap(data.getString(0), data.getInt(1), data.getInt(2), callbackContext);
+          return true;
+        } else if (action.equals("printBarCode")) {
+          printBarCode(data.getString(0), data.getInt(1), data.getInt(2), data.getInt(1), data.getInt(2), callbackContext);
+          return true;
+        } else if (action.equals("printQRCode")) {
+          printQRCode(data.getString(0), data.getInt(1), data.getInt(2), callbackContext);
+          return true;
+        } else if (action.equals("printOriginalText")) {
+          printOriginalText(data.getString(0), callbackContext);
+          return true;
+        } else if (action.equals("printString")) {
+          printString(data.getString(0), callbackContext);
+          return true;
+        } else if (action.equals("printerStatusStartListener")) {
+          printerStatusStartListener(callbackContext);
+          return true;
+        } else if (action.equals("printerStatusStopListener")) {
+          printerStatusStopListener();
+          return true;
+        } else if (action.equals("initScanner")) {
+          scannerInit(callbackContext);
+          return true;
+        } else if (action.equals("cutPaper")) {
+          cutPaper(callbackContext);
+          return true;
+        }
+      } catch (Exception e) {
+        Log.i(TAG, "ERROR: " + e.getMessage());
       }
+      
 
       return false;
     }
@@ -931,9 +936,9 @@ public class Printer extends CordovaPlugin {
         boolean ret = false;
         try {
             ret = InnerPrinterManager.getInstance().hasPrinter(service);
+            sunmiPrinter = ret?FoundSunmiPrinter:NoSunmiPrinter;
         } catch (InnerPrinterException e) {
             e.printStackTrace();
         }
-        sunmiPrinter = ret?FoundSunmiPrinter:NoSunmiPrinter;
     }
 }

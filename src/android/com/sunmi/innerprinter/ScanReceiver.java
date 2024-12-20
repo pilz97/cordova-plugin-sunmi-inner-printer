@@ -32,11 +32,17 @@ public class ScanReceiver extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
-    String code = intent.getStringExtra("data");
-    Log.i(TAG, "Bind print service result: " + code);
-    //String arr = intent.getByteArrayExtra("source_byte");
-    if (code != null && !code.isEmpty()) {
-      loadUrl("cordova.fireDocumentEvent('onScannedValue', {'value':\""+code+"\"});");
+    try {
+      String message = "";
+      final String scannerType = "Sunmi";
+      String code = intent.getStringExtra("data");
+      Log.i(TAG, "Bind print service result: " + code);
+      //String arr = intent.getByteArrayExtra("source_byte");
+      if (code != null && !code.isEmpty()) {
+        loadUrl("cordova.fireDocumentEvent('onScannedValue', {'value':\""+code+"\",'message':\""+message+"\",'scannerType':\""+scannerType+"\"});");
+      }
+    } catch (Exception e) {
+      Log.i(TAG, "ERROR ScanReceiver onReceive: " + e.getMessage());
     }
   }
 
