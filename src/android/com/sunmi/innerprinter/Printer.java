@@ -134,26 +134,25 @@ public class Printer extends CordovaPlugin {
             sunmiPrinter = NoSunmiPrinter;
         }
         Log.i(TAG, "Bind print service result: " + ret);
+
+        IntentFilter mFilter = new IntentFilter();
+        mFilter.addAction(OUT_OF_PAPER_ACTION);
+        mFilter.addAction(ERROR_ACTION);
+        mFilter.addAction(NORMAL_ACTION);
+        mFilter.addAction(COVER_OPEN_ACTION);
+        mFilter.addAction(COVER_ERROR_ACTION);
+        mFilter.addAction(KNIFE_ERROR_1_ACTION);
+        mFilter.addAction(KNIFE_ERROR_2_ACTION);
+        mFilter.addAction(OVER_HEATING_ACITON);
+        mFilter.addAction(FIRMWARE_UPDATING_ACITON);
+  
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.TIRAMISU) {
+          applicationContext.registerReceiver(printerStatusReceiver, mFilter, RECEIVER_EXPORTED);
+        }else {
+          applicationContext.registerReceiver(printerStatusReceiver, mFilter);
+        }
       } catch (Exception e) {
         Log.i(TAG, "ERROR on bind print service: " + e.getMessage());
-      }
-
-
-      IntentFilter mFilter = new IntentFilter();
-      mFilter.addAction(OUT_OF_PAPER_ACTION);
-      mFilter.addAction(ERROR_ACTION);
-      mFilter.addAction(NORMAL_ACTION);
-      mFilter.addAction(COVER_OPEN_ACTION);
-      mFilter.addAction(COVER_ERROR_ACTION);
-      mFilter.addAction(KNIFE_ERROR_1_ACTION);
-      mFilter.addAction(KNIFE_ERROR_2_ACTION);
-      mFilter.addAction(OVER_HEATING_ACITON);
-      mFilter.addAction(FIRMWARE_UPDATING_ACITON);
-
-      if (Build.VERSION.SDK_INT > Build.VERSION_CODES.TIRAMISU) {
-        applicationContext.registerReceiver(printerStatusReceiver, mFilter, RECEIVER_EXPORTED);
-      }else {
-        applicationContext.registerReceiver(printerStatusReceiver, mFilter);
       }
     }
 
