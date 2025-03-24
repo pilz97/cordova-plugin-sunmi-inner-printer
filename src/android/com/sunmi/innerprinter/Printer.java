@@ -145,7 +145,7 @@ public class Printer extends CordovaPlugin {
         mFilter.addAction(KNIFE_ERROR_2_ACTION);
         mFilter.addAction(OVER_HEATING_ACITON);
         mFilter.addAction(FIRMWARE_UPDATING_ACITON);
-  
+
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.TIRAMISU) {
           applicationContext.registerReceiver(printerStatusReceiver, mFilter, RECEIVER_EXPORTED);
         }else {
@@ -234,7 +234,7 @@ public class Printer extends CordovaPlugin {
       } catch (Exception e) {
         Log.i(TAG, "ERROR: " + e.getMessage());
       }
-      
+
 
       return false;
     }
@@ -447,6 +447,32 @@ public class Printer extends CordovaPlugin {
         @Override
         public void run() {
           try {
+            // printerService.lineWrap(count, new InnerResultCallback() {
+            //   @Override
+            //   public void onRunResult(boolean isSuccess) {
+            //     if (isSuccess) {
+            //       callbackContext.success("");
+            //     } else {
+            //       callbackContext.error(isSuccess + "");
+            //     }
+            //   }
+
+            //   @Override
+            //   public void onReturnString(String result) {
+            //     callbackContext.success(result);
+            //   }
+
+            //   @Override
+            //   public void onRaiseException(int code, String msg) {
+            //     callbackContext.error(msg);
+            //   }
+
+            //   @Override
+            //   public void onPrintResult(int code, String msg) {
+            //     callbackContext.success(msg);
+            //   }
+            // });
+
             printerService.lineWrap(count, null);
             callbackContext.success("");
           } catch (Exception e) {
